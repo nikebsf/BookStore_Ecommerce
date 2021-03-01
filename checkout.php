@@ -50,7 +50,7 @@ function order_check(){
 
         $order_item = @mysqli_query($dbc,$orderQuery);
         $orderedItem = @mysqli_fetch_array($order_item);
-//
+
         echo "<br><b>ordered " . $i_name . "!!";
         // Update Quantiy of perticular item in inventory table
         $updateQuery = "UPDATE bookinventory SET Quantity = Quantity - 1 WHERE BookId= {$sID}";
