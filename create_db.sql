@@ -1,0 +1,2 @@
+CREATE DATABASE P1_BookStore;
+USE P1_BookStore;
