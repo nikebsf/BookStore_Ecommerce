@@ -7,8 +7,8 @@ CREATE TABLE bookinventoryorder (
     isbn VARCHAR(30),
     deliveryformat VARCHAR(30)
 );
-
-drop table bookinventoryorder;
-
 select * from bookinventoryorder;
+
+-- INSERT INTO bookinventoryorder (bookname, authorname, isbn, deliveryformat) 
+--         VALUES ("abc", "abcc", '1231','pdf');
 
