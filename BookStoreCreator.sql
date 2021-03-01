@@ -7,5 +7,8 @@ CREATE TABLE BookInventory (
     AuthorName VARCHAR(50),
     ISBN VARCHAR(30),
     DeliveryFormat VARCHAR(30),
-    Quantity INT(4)
-)
+    Quantity INT(4),
+    Img BLOB
+);
+
+drop table BookInventory;

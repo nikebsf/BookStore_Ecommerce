@@ -20,7 +20,7 @@ while ($row = mysqli_fetch_array($result)){
 
     echo "<p><a href='checkout.php?bookid={$row['BookId']}'> {$row['BookId']} | {$row['BookName']} | 
     {$row['AuthorName']} | {$row['ISBN']} | 
-    {$row['DeliveryFormat']} | {$row['Quantity']}";
+    {$row['DeliveryFormat']} | {$row['Quantity']} | <p><img src='/uploads/{$row['Img']}'></img>";
 } 
 
 // function getid(){
