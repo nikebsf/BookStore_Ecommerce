@@ -2,7 +2,7 @@
 require("mysqli_connect.php");
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    
+    //
 
     if(isset($_FILES['upload'])){
         print_r($_FILES);
