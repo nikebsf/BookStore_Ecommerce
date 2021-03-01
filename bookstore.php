@@ -13,20 +13,18 @@
 require("mysqli_connect.php");
 session_start();
 
+//echo "hi";
 $query = "SELECT * FROM bookinventory";
 $result = @mysqli_query($dbc, $query);
 
 
 while ($row = mysqli_fetch_array($result)){
 
-    echo "<p><a href='checkout.php?bookid={$row['BookId']}'> {$row['BookId']} | {$row['BookName']} | 
-    {$row['AuthorName']} | {$row['ISBN']} | 
-    {$row['DeliveryFormat']} | {$row['Quantity']} | <p><img src='/uploads/{$row['Img']}'></img>";
+    echo "<p><a href='checkout.php?bid={$row['bookid']}'> {$row['bookid']} | {$row['bookname']} | 
+    {$row['authorname']} | {$row['isbn']} | 
+    {$row['deliveryformat']} | {$row['quantity']} ";
+    //| <p><img src='/uploads/{$row['Img']}'></img>
 } 
-
-// function getid(){
-//     $_SESSION["id"] = $this->BookId;
-// }
 ?>
 </body>
 </html>

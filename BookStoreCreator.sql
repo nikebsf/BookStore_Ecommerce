@@ -1,14 +1,13 @@
 CREATE DATABASE P1_BookStore;
 USE P1_BookStore;
 
-CREATE TABLE BookInventory (
-	BookId INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    BookName VARCHAR(50) NOT NULL,
-    AuthorName VARCHAR(50),
-    ISBN VARCHAR(30),
-    DeliveryFormat VARCHAR(30),
-    Quantity INT(4),
-    Img BLOB
+CREATE TABLE bookinventory (
+	bookid INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    bookname VARCHAR(50) NOT NULL,
+    authorname VARCHAR(50),
+    isbn VARCHAR(30),
+    deliveryformat VARCHAR(30),
+    quantity INT(4)
 );
 
-drop table BookInventory;
+drop table bookinventory;

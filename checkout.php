@@ -1,85 +1,3 @@
-<?php
-require("mysqli_connect.php");
-session_start();
-if(!isset($_GET["bookid"])){
-    if(!$_SESSION["bookid"]){
-        echo "<br>Book id is not set!!!!<br>";
-       
-    }
-    else{
-         echo "<br>Book id is: " .$_SESSION['bookid'] . "<br>";
-    }
-}
-else{
-    
-    $_SESSION["bookid"] =  $_GET["bookid"];
-   
-    //echo "<br>bookid is set<br>";
-    
-}
-
-if(isset($_POST["submit"])){
-
-//echo $order_id;
-function order_check(){
-
-    $sID = intval($_SESSION["bookid"]);
-
-    if(empty($_POST["Fname"]) || empty($_POST["Lname"]) || empty($_POST["Email"]) || empty($_POST["Cnum"])) {
-        echo "Please fill required fields!!";
-    }
-    else{
-        echo "updated";
-        // Get Item details
-        //echo $sID;
-        $collectOrder = "SELECT * FROM bookinventory WHERE BookId = {$sID}";
-        $getItem = @mysqli_query($dbc, $collectOrder);
-        $itemsGot = @mysqli_fetch_array($getItem);
-    
-        $i_id = $itemsGot["BookId"];
-        $i_name = $itemsGot["BookName"];
-        $i_aname = $itemsGot["AuthorName"];
-        $i_isbn = $itemsGot["ISBN"];
-        $i_dFormat = $itemsGot["DelieryFormat"];
-
-        echo $itemsGot["i_id"];
-        echo $itemsGot["i_name"];
-        // Insert into Order Table
-        $orderQuery = "INSERT INTO bookinventoryorder (BookName, AuthorName, ISBN, DeliveryFormat) 
-        VALUES ({$i_name}, {$i_aname}, {$i_isbn}, {$i_dFormat})";
-
-        $order_item = @mysqli_query($dbc,$orderQuery);
-        $orderedItem = @mysqli_fetch_array($order_item);
-
-        echo "<br><b>ordered " . $i_name . "!!";
-        // Update Quantiy of perticular item in inventory table
-        $updateQuery = "UPDATE bookinventory SET Quantity = Quantity - 1 WHERE BookId= {$sID}";
-        $update_table = @mysqli_query($dbc, $updateQuery);
-
-        // session_destroy();
-
-    }
-    // function getItems(){
-        
-    // }
-
-    // function addItems(){
-        
-    // }
-
-    // function updateItem(){
-        
-    // }
-}
-
-
-}
-
-
-
-
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -98,10 +16,71 @@ function order_check(){
     </form>
 
 <?php
-    if(isset($_POST["submit"])){
-        order_check();
-    }
+    // if(isset($_POST["submit"])){
+    //     order_check();
+    // }
 ?>
     
 </body>
 </html>
+
+<?php
+require("mysqli_connect.php");
+session_start();
+if(!isset($_GET["bid"])){
+    if(!$_SESSION["bid"]){
+        echo "<br>Book id is not set!!!!<br>";
+       
+    }
+    // else{
+    //      echo "<br>Book id is: " .$_SESSION['bid'] . "<br>";
+    // }
+}
+else{
+    $_SESSION["bid"] =  $_GET["bid"];
+    //echo "<br>bookid is set<br>";
+}
+
+$sID = intval($_SESSION['bid']);
+//echo $order_id;
+
+    //$sID = intval($_SESSION['bid']);
+// validating fields!!
+    if(empty($_POST["Fname"]) || empty($_POST["Lname"]) || empty($_POST["Email"]) || empty($_POST["Cnum"])) {
+        echo "Please fill required fields!!";
+    }
+    else{
+        //echo "updated";
+    // Get Item details----------------------------------------------------
+        //echo $sID;
+        $collectOrder = "SELECT * FROM bookinventory WHERE bookid = {$sID}";
+        $getItem = @mysqli_query($dbc, $collectOrder);
+        $itemsGot = @mysqli_fetch_array($getItem);
+       // print_r($itemsGot);
+    
+        $i_id = $itemsGot["bookid"];
+        $i_name = $itemsGot["bookname"];
+        $i_aname = $itemsGot["authorname"];
+        $i_isbn = $itemsGot["isbn"];
+        $i_dFormat = $itemsGot["deliveryformat"];
+
+        // echo $i_id;
+        // echo $i_name;
+    // Insert into Order Table---------------------------------------------
+            $orderQuery = "INSERT INTO bookinventoryorder (bookname, authorname, isbn, deliveryformat) 
+            VALUES ('{$i_name}', '{$i_aname}', '{$i_isbn}', '{$i_dFormat}')";
+
+        $order_item = @mysqli_query($dbc,$orderQuery);
+        $orderedItem = @mysqli_fetch_array($order_item);
+
+        echo "<br><b>ordered " . $i_name . "!!";
+    // Update Quantiy of perticular item in inventory table-----------------
+        $updateQuery = "UPDATE bookinventory SET quantity = quantity - 1 WHERE bookid= {$sID}";
+        $update_table = @mysqli_query($dbc, $updateQuery);
+
+        unset ($_SESSION['bid']);
+        session_destroy();
+
+    }
+   
+?>
