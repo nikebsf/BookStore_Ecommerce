@@ -27,9 +27,9 @@ $result = @mysqli_query($dbc, $query);
 
 while ($row = mysqli_fetch_array($result)){
 
-    echo "<div id='main-content' class='card-deck text-center d-inline-flex p-2'  style='margin: 5px 0 0 0'>
+    echo "<div id='main-content' class='card-deck text-center d-inline-flex p-2'  style='margin: 50px 0 0 0'>
 
-    <div class='card bg-light text-dark mb-4 w-25 p-3' style='max-height: auto; max-width: 200px'>
+    <div class='card bg-light text-dark mb-4 w-25 p-3' style='max-height: auto; width: 200px;'>
     <a href='checkout.php?bid={$row['bookid']}'>
     <span style='color:red'>{$row['bookid']}</span> <br>
     <span style='font-size:2em; line-height:2'>{$row['bookname']}</span> <br>

@@ -11,7 +11,7 @@
     <title>Checkout</title>
 </head>
 <body>
-    <form role="form" action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <form role="form" action= "<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" style="margin:auto;width:50%;margin-top:20px">
         <div class="form-group row">
             <label for="inputEmail" class="col-sm-2 col-form-label">FirstName</label>
             <div class="col-sm-10">
@@ -33,7 +33,7 @@
         <div class="form-group row">
             <label for="inputEmail" class="col-sm-2 col-form-label">Card Number</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="" name="Cnum" placeholder="card number">
+                <input type="number" class="form-control" id="" name="Cnum" placeholder="card number" maxlength="12">
             </div>
         </div>
         <div class="form-group row">
@@ -80,7 +80,7 @@ $sID = intval($_SESSION['bid']);
     //$sID = intval($_SESSION['bid']);
 // validating fields!!
     if(empty($_POST["Fname"]) || empty($_POST["Lname"]) || empty($_POST["Email"]) || empty($_POST["Cnum"])) {
-        echo "Please fill required fields!!";
+        echo "<span style='color:red; font-size:2em'>Please fill required fields!!</span>";
     }
     else{
         //echo "updated";
